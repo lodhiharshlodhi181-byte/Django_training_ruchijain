@@ -1,0 +1,35 @@
+
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+About - Tech Hub
+{% endblock %}
+
+{% block content %}
+
+<h2>Laptops</h2>
+
+<div class="container">
+
+    <div class="card">
+        <img src="{% static 'ales-nesetril-Im7lZjxeLhg-unsplash.jpg'  %}"
+             alt="Laptop">
+        <h3>Modern Laptop</h3>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'giorgio-trovato-8krX0HkXw8c-unsplash.jpg' %}"
+             alt="Laptop">
+        <h3>Professional Laptop</h3>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'maxim-hopman-Hin-rzhOdWs-unsplash.jpg' %}"
+             alt="Laptop">
+        <h3>Premium Laptop</h3>
+    </div>
+
+</div>
+
+{% endblock %}

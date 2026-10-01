@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee List</title>
+
+    <style>
+
+        /* ===== FULL PAGE ===== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+
+        body > div {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        /* ===== HEADING ===== */
+
+        h1 {
+            text-align: center;
+            color: #4b3f72;
+            font-size: 38px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ===== BUTTONS ===== */
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* BUTTON HOVER */
+
+        button:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* ===== TABLE ===== */
+
+        table {
+            width: 100%;
+            margin-top: 25px;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ===== TABLE HEADER ===== */
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        /* ===== TABLE DATA ===== */
+
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            color: #333;
+            font-size: 15px;
+        }
+
+        /* ===== ALTERNATE ROW ===== */
+
+        tr:nth-child(even) {
+            background-color: #f4f2ff;
+        }
+
+        tr:nth-child(odd) {
+            background-color: white;
+        }
+
+        /* ===== ROW HOVER ===== */
+
+        tr:hover td {
+            background-color: #e5e0ff;
+            color: #5a3db8;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        /* ===== MOBILE ===== */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 15px;
+            }
+
+            body > div {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            button {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th,
+            td {
+                padding: 9px 5px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div>
+
+        <h1>Employee List</h1>
+
+
+        <!-- BUTTONS -->
+
+        <a href="{% url 'saveuser' %}">
+            <button>Save Employee</button>
+        </a>
+
+        <a href="{% url 'employeelist' %}">
+            <button>Show Employees</button>
+        </a>
+
+        <a href="{% url 'updateEmployee' %}">
+            <button>Update Employee</button>
+        </a>
+
+        <a href="{% url 'deleteEmployee' %}">
+            <button>Delete Employee</button>
+        </a>
+
+
+        <br>
+        <br>
+
+
+        <!-- EMPLOYEE TABLE -->
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Employee NO.</th>
+                <th>Employee Name</th>
+                <th>Employee Salary</th>
+            </tr>
+
+
+            {% for i in Employees %}
+
+            <tr>
+
+                <td><a href="http://localhost:8000/database/updateEmployeeForm/?id={{ i.id }}">{{ i.id }}</a></td>
+
+                <td>{{ i.Eno }}</td>
+
+                <td>{{ i.ename }}</td>
+
+                <td>₹ {{ i.esal }}</td>
+                <td><a href="http://localhost:8000/database/deleteEmployee/?id={{ i.id }}">delete</a></td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

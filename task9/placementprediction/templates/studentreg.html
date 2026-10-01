@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px 15px;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(0, 234, 255, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(168, 85, 247, 0.20),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #080b18,
+                    #111936,
+                    #080b18
+                );
+        }
+
+        /* Registration Card */
+
+        .container {
+
+            width: 500px;
+
+            padding: 40px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            border-radius: 30px;
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.55),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+            animation: showCard 0.7s ease;
+        }
+
+        /* Heading */
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 36px;
+
+            margin-bottom: 8px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00eaff,
+                    #ffffff,
+                    #a855f7
+                );
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: rgba(255, 255, 255, 0.5);
+
+            font-size: 14px;
+
+            margin-bottom: 30px;
+        }
+
+        /* Form */
+
+        form {
+            width: 100%;
+        }
+
+        /* Input Group */
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        /* Labels */
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: rgba(255, 255, 255, 0.8);
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        /* Inputs */
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+
+            width: 100%;
+
+            height: 50px;
+
+            padding: 0 15px;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: rgba(0, 0, 0, 0.25);
+
+            color: white;
+
+            font-size: 15px;
+
+            transition: all 0.3s ease;
+        }
+
+        /* Placeholder */
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Focus */
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus {
+
+            border-color: #00eaff;
+
+            background: rgba(0, 234, 255, 0.06);
+
+            box-shadow:
+                0 0 0 2px rgba(0, 234, 255, 0.10),
+                0 0 20px rgba(0, 234, 255, 0.12);
+        }
+
+        /* Error message */
+
+        .error {
+
+            display: block;
+
+            margin-top: 6px;
+
+            color: #ff6b81;
+
+            font-size: 12px;
+        }
+
+        /* Sign Up Button */
+
+        .signup-btn {
+
+            width: 100%;
+
+            height: 55px;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00eaff,
+                    #0077ff,
+                    #8b5cf6
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            box-shadow:
+                0 8px 25px rgba(0, 119, 255, 0.3);
+        }
+
+        .signup-btn:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 0 25px rgba(0, 234, 255, 0.45),
+                0 12px 35px rgba(139, 92, 246, 0.3);
+        }
+
+        .signup-btn:active {
+
+            transform: scale(0.97);
+        }
+
+        /* Bottom text */
+
+        .bottom-text {
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: rgba(255, 255, 255, 0.4);
+
+            font-size: 13px;
+        }
+
+        /* Animation */
+
+        @keyframes showCard {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(0.96);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 550px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+
+                width: 100%;
+
+                padding: 30px 22px;
+
+                border-radius: 24px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Registration</h1>
+
+        <p class="subtitle">
+            Create your student account
+        </p>
+
+
+        <form action="{% url 'saveuser' %}" method="post">
+
+            {% csrf_token %}
+
+
+            <!-- Student Name -->
+
+            <div class="input-group">
+
+                <label for="sname">
+                    Student Name
+                </label>
+
+                <input
+                    type="text"
+                    name="sname"
+                    id="sname"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                {% if errormsg %}
+                    <span class="error">
+                        {{ errormsg }}
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="input-group">
+
+                <label for="spassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    name="spassword"
+                    id="spassword"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Student ID -->
+
+            <div class="input-group">
+
+                <label for="sid">
+                    Student ID
+                </label>
+
+                <input
+                    type="text"
+                    name="sid"
+                    id="sid"
+                    placeholder="Enter your student ID"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Branch -->
+
+            <div class="input-group">
+
+                <label for="sbranch">
+                    Branch
+                </label>
+
+                <input
+                    type="text"
+                    name="sbranch"
+                    id="sbranch"
+                    placeholder="Enter your branch"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Email -->
+
+            <div class="input-group">
+
+                <label for="semail">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    name="semail"
+                    id="semail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Sign Up -->
+
+            <input
+                type="submit"
+                value="Create Account"
+                class="signup-btn"
+            >
+
+        </form>
+
+
+        <div class="bottom-text">
+            Student Placement Portal
+        </div>
+
+    </div>
+
+</body>
+
+</html>

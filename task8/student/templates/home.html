@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ROBOTIC HOME</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Courier New", monospace;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                #050b12;
+
+            background-size: 40px 40px;
+            color: #00ffff;
+
+            overflow: hidden;
+        }
+
+        /* Main Robot Panel */
+        .robot-panel {
+            width: 500px;
+            padding: 45px;
+
+            background: rgba(5, 20, 30, 0.90);
+
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+
+            box-shadow:
+                0 0 15px #00ffff,
+                0 0 40px rgba(0, 255, 255, 0.5),
+                inset 0 0 30px rgba(0, 255, 255, 0.08);
+
+            position: relative;
+        }
+
+        /* Corner decorations */
+        .robot-panel::before,
+        .robot-panel::after {
+            content: "";
+            position: absolute;
+
+            width: 35px;
+            height: 35px;
+
+            border-color: #00ffff;
+            border-style: solid;
+        }
+
+        .robot-panel::before {
+            top: -3px;
+            left: -3px;
+            border-width: 4px 0 0 4px;
+        }
+
+        .robot-panel::after {
+            bottom: -3px;
+            right: -3px;
+            border-width: 0 4px 4px 0;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+
+            font-size: 38px;
+            letter-spacing: 5px;
+
+            color: #00ffff;
+
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 15px #00ffff,
+                0 0 30px #00ffff;
+
+            margin-bottom: 15px;
+
+            animation: glow 2s infinite alternate;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7ffcff;
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-bottom: 35px;
+        }
+
+        /* Status */
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-bottom: 30px;
+
+            color: #39ff14;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+
+            background: #39ff14;
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 5px #39ff14,
+                0 0 15px #39ff14;
+
+            animation: blink 1s infinite;
+        }
+
+        /* Buttons */
+        form {
+            margin-bottom: 18px;
+        }
+
+        .robot-btn {
+            width: 100%;
+            padding: 17px;
+
+            background: transparent;
+
+            border: 2px solid #00ffff;
+            border-radius: 8px;
+
+            color: #00ffff;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            letter-spacing: 4px;
+
+            cursor: pointer;
+
+            position: relative;
+            overflow: hidden;
+
+            transition: 0.3s;
+        }
+
+        .robot-btn::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            left: -100%;
+
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 255, 255, 0.4),
+                transparent
+            );
+
+            transition: 0.5s;
+        }
+
+        .robot-btn:hover::before {
+            left: 100%;
+        }
+
+        .robot-btn:hover {
+            background: #00ffff;
+            color: #001014;
+
+            box-shadow:
+                0 0 10px #00ffff,
+                0 0 25px #00ffff,
+                0 0 50px rgba(0, 255, 255, 0.5);
+
+            transform: scale(1.03);
+        }
+
+        .robot-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Bottom text */
+        .system-text {
+            margin-top: 30px;
+
+            text-align: center;
+
+            color: #527f86;
+
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        /* Animations */
+        @keyframes glow {
+            from {
+                text-shadow:
+                    0 0 5px #00ffff,
+                    0 0 15px #00ffff;
+            }
+
+            to {
+                text-shadow:
+                    0 0 10px #00ffff,
+                    0 0 25px #00ffff,
+                    0 0 45px #00ffff;
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            .robot-panel {
+                width: 90%;
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="robot-panel">
+
+        <h1>ROBOT CORE</h1>
+
+        <div class="subtitle">
+            SYSTEM ACCESS PORTAL
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+        <!-- LOGIN -->
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+
+            <button type="submit" class="robot-btn">
+                [ LOGIN ]
+            </button>
+        </form>
+
+        <!-- SIGNUP -->
+        <form action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+
+            <button type="submit" class="robot-btn">
+                [ SIGN UP ]
+            </button>
+        </form>
+
+        <div class="system-text">
+            &lt; ACCESS CONTROL // AI SYSTEM v1.0 &gt;
+        </div>
+
+    </div>
+
+</body>
+</html>

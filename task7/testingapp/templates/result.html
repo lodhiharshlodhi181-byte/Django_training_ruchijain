@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .result-box {
+            background-color: white;
+            width: 400px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px gray;
+        }
+
+        h1 {
+            color: green;
+        }
+
+        .score {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background-color: blue;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="result-box">
+
+    <h1>Test Completed!</h1>
+
+    <p class="score">
+        Your Score
+    </p>
+
+    <p class="score">
+        {{ score }} / {{ total }}
+    </p>
+
+    <a class="btn" href="{% url 'select' %}">
+        Take Test Again
+    </a>
+
+</div>
+
+</body>
+</html>

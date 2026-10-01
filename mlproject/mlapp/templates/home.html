@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI PREDICTION SYSTEM</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Courier New", monospace;
+        }
+
+
+        /* BODY */
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 40px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(0,255,255,0.04) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(0,255,255,0.04) 1px,
+                    transparent 1px
+                ),
+                #03080d;
+
+            background-size: 40px 40px;
+
+            color: #00ffff;
+        }
+
+
+        /* MAIN ROBOT PANEL */
+
+        .robot-panel {
+
+            width: 600px;
+
+            padding: 40px;
+
+            background: rgba(3,18,27,0.96);
+
+            border: 2px solid #00ffff;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 0 15px #00ffff,
+                0 0 40px rgba(0,255,255,0.4),
+                inset 0 0 35px rgba(0,255,255,0.08);
+
+            position: relative;
+        }
+
+
+        /* CORNER EFFECT */
+
+        .robot-panel::before,
+        .robot-panel::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 45px;
+            height: 45px;
+
+            border-color: #00ffff;
+            border-style: solid;
+        }
+
+
+        .robot-panel::before {
+
+            top: -3px;
+            left: -3px;
+
+            border-width: 4px 0 0 4px;
+        }
+
+
+        .robot-panel::after {
+
+            bottom: -3px;
+            right: -3px;
+
+            border-width: 0 4px 4px 0;
+        }
+
+
+        /* HEADING */
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 32px;
+
+            letter-spacing: 5px;
+
+            margin-bottom: 10px;
+
+            color: #00ffff;
+
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 15px #00ffff,
+                0 0 30px #00ffff;
+
+            animation: glow 2s infinite alternate;
+        }
+
+
+        /* SUBTITLE */
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #6beef5;
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* SYSTEM STATUS */
+
+        .status {
+
+            text-align: center;
+
+            color: #39ff14;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .status-dot {
+
+            display: inline-block;
+
+            width: 9px;
+            height: 9px;
+
+            margin-right: 8px;
+
+            border-radius: 50%;
+
+            background: #39ff14;
+
+            box-shadow:
+                0 0 5px #39ff14,
+                0 0 15px #39ff14;
+
+            animation: blink 1s infinite;
+        }
+
+
+        /* FORM */
+
+        form {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        /* INPUT GROUP */
+
+        .input-group {
+
+            position: relative;
+        }
+
+
+        .input-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #00ffff;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* INPUT */
+
+        .input-group input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            background: #02090e;
+
+            color: #00ffff;
+
+            border: 1px solid #00ffff;
+
+            border-radius: 6px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            box-shadow:
+                inset 0 0 10px rgba(0,255,255,0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .input-group input:focus {
+
+            border-color: #39ff14;
+
+            box-shadow:
+                0 0 10px #39ff14,
+                0 0 20px rgba(57,255,20,0.25),
+                inset 0 0 10px rgba(57,255,20,0.1);
+        }
+
+
+        .input-group input:hover {
+
+            box-shadow:
+                0 0 8px rgba(0,255,255,0.5);
+        }
+
+
+        /* PLACEHOLDER */
+
+        input::placeholder {
+
+            color: #3e7075;
+        }
+
+
+        /* SUBMIT BUTTON */
+
+        input[type="submit"] {
+
+            grid-column: 1 / 3;
+
+            width: 100%;
+
+            padding: 16px;
+
+            margin-top: 10px;
+
+            background: transparent;
+
+            color: #00ffff;
+
+            border: 2px solid #00ffff;
+
+            border-radius: 7px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            letter-spacing: 5px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        input[type="submit"]:hover {
+
+            background: #00ffff;
+
+            color: #001014;
+
+            box-shadow:
+                0 0 10px #00ffff,
+                0 0 25px #00ffff,
+                0 0 50px rgba(0,255,255,0.6);
+
+            transform: scale(1.02);
+        }
+
+
+        input[type="submit"]:active {
+
+            transform: scale(0.97);
+        }
+
+
+        /* BOTTOM SYSTEM TEXT */
+
+        .system-text {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #42666b;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* ANIMATIONS */
+
+        @keyframes glow {
+
+            from {
+
+                text-shadow:
+                    0 0 5px #00ffff,
+                    0 0 15px #00ffff;
+            }
+
+            to {
+
+                text-shadow:
+                    0 0 10px #00ffff,
+                    0 0 25px #00ffff,
+                    0 0 45px #00ffff;
+            }
+        }
+
+
+        @keyframes blink {
+
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            .robot-panel {
+
+                width: 95%;
+
+                padding: 30px 20px;
+            }
+
+
+            form {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            input[type="submit"] {
+
+                grid-column: 1;
+            }
+
+
+            h1 {
+
+                font-size: 24px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="robot-panel">
+
+
+        <h1>
+            AI PREDICTION
+        </h1>
+
+
+        <div class="subtitle">
+            GLASS ANALYSIS // MACHINE LEARNING SYSTEM
+        </div>
+
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            AI SYSTEM ONLINE // READY FOR INPUT
+
+        </div>
+
+
+        <form action="{% url 'result' %}">
+
+
+            <!-- RI -->
+
+            <div class="input-group">
+
+                <label for="RI">
+                    &gt; RI
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    name="RI"
+                    id="RI"
+                    placeholder="Enter RI"
+                >
+
+            </div>
+
+
+            <!-- NA -->
+
+            <div class="input-group">
+
+                <label for="Na">
+                    &gt; Na
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    name="Na"
+                    id="Na"
+                    placeholder="Enter Na"
+                >
+
+            </div>
+
+
+            <!-- MG -->
+
+            <div class="input-group">
+
+                <label for="Mg">
+                    &gt; Mg
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    name="Mg"
+                    id="Mg"
+                    placeholder="Enter Mg"
+                >
+
+            </div>
+
+
+            <!-- AL -->
+
+            <div class="input-group">
+
+                <label for="Al">
+                    &gt; Al
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    name="Al"
+                    id="Al"
+                    placeholder="Enter Al"
+                >
+
+            </div>
+
+
+            <!-- SI -->
+
+            <div class="input-group">
+
+                <label for="Si">
+                    &gt; Si
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    name="Si"
+                    id="Si"
+                    placeholder="Enter Si"
+                >
+
+            </div>
+
+
+            <!-- K -->
+
+            <div class="input-group">
+
+                <label for="K">
+                    &gt; K
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    name="K"
+                    id="K"
+                    placeholder="Enter K"
+                >
+
+            </div>
+
+
+            <!-- CA -->
+
+            <div class="input-group">
+
+                <label for="Ca">
+                    &gt; Ca
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    name="Ca"
+                    id="Ca"
+                    placeholder="Enter Ca"
+                >
+
+            </div>
+
+
+            <!-- BA -->
+
+            <div class="input-group">
+
+                <label for="Ba">
+                    &gt; Ba
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    name="Ba"
+                    id="Ba"
+                    placeholder="Enter Ba"
+                >
+
+            </div>
+
+
+            <!-- FE -->
+
+            <div class="input-group">
+
+                <label for="Fe">
+                    &gt; Fe
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    name="Fe"
+                    id="Fe"
+                    placeholder="Enter Fe"
+                >
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <input
+                type="submit"
+                value="[ RUN AI PREDICTION ]"
+            >
+
+
+        </form>
+
+
+        <div class="system-text">
+
+            &lt; NEURAL ENGINE // INPUT PARAMETERS READY &gt;
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

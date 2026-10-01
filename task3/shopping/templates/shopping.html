@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Hub</title>
+
+    <link rel="stylesheet" href="{% static 'mycss.css' %}">
+</head>
+
+<body>
+
+    <!-- Heading -->
+    <div class="navbar">
+        <h1>Shopping Hub</h1>
+    </div>
+
+
+    <!-- Shopping Options -->
+    <div class="shops">
+
+        <!-- Flipkart -->
+        <div class="shop-box">
+            <img src="{% static 'flipkart-logo-39903.png' %}" alt="Flipkart">
+
+            <a href="https://www.flipkart.com/" target="_blank">
+                <button class="flipkart">
+                    Shop on Flipkart
+                </button>
+            </a>
+        </div>
+
+
+        <!-- Amazon -->
+        <div class="shop-box">
+            <img src="{% static 'vecteezy_amazon-logo-on-a-transparent-background-amazon-e-commerce_78861839.png' %}" alt="Amazon">
+
+            <a href="https://www.amazon.in/" target="_blank">
+                <button class="amazon">
+                    Shop on Amazon
+                </button>
+            </a>
+        </div>
+
+
+        <!-- Meesho -->
+        <div class="shop-box">
+            <img src="{% static 'vecteezy_meesho-logo-meesho-icon-transparent-background_67941687.png' %}" alt="Meesho">
+
+            <a href="https://www.meesho.com/" target="_blank">
+                <button class="meesho">
+                    Shop on Meesho
+                </button>
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- Shopping Video -->
+    <div class="video-section">
+
+        <h2>Shopping Video</h2>
+
+        <video controls>
+            <source src="{% static 'transition2.mp4' %}" type="video/mp4">
+        </video>
+
+    </div>
+
+</body>
+
+</html>

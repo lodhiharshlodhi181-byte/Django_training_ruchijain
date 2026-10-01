@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+
+/* Navbar */
+
+.navbar {
+    background-color: #222;
+    color: white;
+    padding: 25px;
+}
+
+.navbar h1 {
+    margin: 0;
+}
+
+
+/* Shopping Options */
+
+.shops {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 30px;
+}
+
+
+/* Each Shop */
+
+.shop-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Shop Images */
+
+.shop-box img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+
+/* Buttons */
+
+.shop-box button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* Flipkart Button */
+
+.flipkart {
+    background-color: #2874f0;
+}
+
+
+/* Amazon Button */
+
+.amazon {
+    background-color: #ff9900;
+}
+
+
+/* Meesho Button */
+
+.meesho {
+    background-color: #e91e63;
+}
+
+
+/* Button Hover */
+
+.shop-box button:hover {
+    opacity: 0.8;
+}
+
+
+/* Video Section */
+
+.video-section {
+    margin-top: 50px;
+}
+
+.video-section h2 {
+    margin-bottom: 20px;
+}
+
+
+/* Video */
+
+.video-section video {
+    width: 650px;
+    max-width: 90%;
+    border-radius: 10px;
+}

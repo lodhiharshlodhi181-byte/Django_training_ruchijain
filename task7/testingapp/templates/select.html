@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Test</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px gray;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: block;
+            width: 250px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: blue;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        .btn:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Select Your Test</h1>
+
+    <a class="btn" href="{% url 'test' %}?number=1">
+        1 Question Test
+    </a>
+
+    <a class="btn" href="{% url 'test' %}?number=3">
+        3 Questions Test
+    </a>
+
+    <a class="btn" href="{% url 'test' %}?number=5">
+        5 Questions Test
+    </a>
+
+</div>
+
+</body>
+</html>

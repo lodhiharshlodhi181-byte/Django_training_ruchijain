@@ -1,0 +1,35 @@
+
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}
+Info - Tech Hub
+{% endblock %}
+
+{% block content %}
+
+<h2>Tourist Places</h2>
+
+<div class="container">
+
+    <div class="card">
+        <img src="{% static 'indre-velaviciute-KT3r730FVkA-unsplash.jpg' %}"
+             alt="Taj Mahal">
+        <h3>Taj Mahal</h3>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'istockphoto-482557081-1024x1024.jpg' %}"
+             alt="Tourist Place">
+        <h3>Beautiful India</h3>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'mayur-sable-7FxtQi-FC5U-unsplash.jpg' %}"
+             alt="Tourist Place">
+        <h3>Beautiful Destination</h3>
+    </div>
+
+</div>
+
+{% endblock %}
+

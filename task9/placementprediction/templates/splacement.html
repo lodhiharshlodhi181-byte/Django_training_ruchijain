@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Placement Prediction</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(0, 234, 255, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(168, 85, 247, 0.20),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #080b18,
+                    #111936,
+                    #080b18
+                );
+        }
+
+        /* Main Card */
+
+        .container {
+
+            width: 500px;
+
+            padding: 45px 40px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            border-radius: 30px;
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.55),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+            animation: showCard 0.7s ease;
+        }
+
+        /* Heading */
+
+        h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00eaff,
+                    #ffffff,
+                    #a855f7
+                );
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .subtitle {
+
+            color: rgba(255, 255, 255, 0.55);
+
+            font-size: 14px;
+
+            margin-bottom: 35px;
+        }
+
+        /* Form */
+
+        form {
+
+            text-align: left;
+        }
+
+        /* Input Group */
+
+        .input-group {
+
+            margin-bottom: 22px;
+        }
+
+        /* Labels */
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: rgba(255, 255, 255, 0.8);
+
+            font-size: 15px;
+
+            font-weight: 600;
+        }
+
+        /* Inputs */
+
+        input[type="text"] {
+
+            width: 100%;
+
+            height: 52px;
+
+            padding: 0 16px;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            border-radius: 12px;
+
+            outline: none;
+
+            background: rgba(0, 0, 0, 0.25);
+
+            color: white;
+
+            font-size: 16px;
+
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]::placeholder {
+
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Focus */
+
+        input[type="text"]:focus {
+
+            border-color: #00eaff;
+
+            background: rgba(0, 234, 255, 0.06);
+
+            box-shadow:
+                0 0 0 2px rgba(0, 234, 255, 0.12),
+                0 0 20px rgba(0, 234, 255, 0.15);
+        }
+
+        /* Submit Button */
+
+        input[type="submit"] {
+
+            width: 100%;
+
+            height: 56px;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00eaff,
+                    #0077ff,
+                    #8b5cf6
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            box-shadow:
+                0 8px 25px rgba(0, 119, 255, 0.3);
+        }
+
+        /* Button Hover */
+
+        input[type="submit"]:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 0 25px rgba(0, 234, 255, 0.45),
+                0 12px 35px rgba(139, 92, 246, 0.3);
+        }
+
+        input[type="submit"]:active {
+
+            transform: scale(0.97);
+        }
+
+        /* Small footer */
+
+        .footer {
+
+            margin-top: 25px;
+
+            color: rgba(255, 255, 255, 0.4);
+
+            font-size: 13px;
+        }
+
+        /* Animation */
+
+        @keyframes showCard {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(0.96);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+
+                width: 100%;
+
+                padding: 35px 25px;
+
+                border-radius: 24px;
+            }
+
+            h1 {
+
+                font-size: 31px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>Placement Predictor</h1>
+
+        <p class="subtitle">
+            Enter your details to check your placement prediction
+        </p>
+
+
+        <form action="{% url 'result' %}">
+
+            {% csrf_token %}
+
+
+            <!-- IQ -->
+
+            <div class="input-group">
+
+                <label for="IQ">
+                    IQ
+                </label>
+
+                <input
+                    type="text"
+                    id="IQ"
+                    name="IQ"
+                    placeholder="Enter your IQ"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CGPA -->
+
+            <div class="input-group">
+
+                <label for="CGPA">
+                    CGPA
+                </label>
+
+                <input
+                    type="text"
+                    id="CGPA"
+                    name="CGPA"
+                    placeholder="Enter your CGPA"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Profile -->
+
+            <div class="input-group">
+
+                <label for="PROFILE">
+                    Profile
+                </label>
+
+                <input
+                    type="text"
+                    id="PROFILE"
+                    name="PROFILE"
+                    placeholder="Enter your profile"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <input
+                type="submit"
+                value="Predict Placement"
+            >
+
+
+        </form>
+
+
+        <div class="footer">
+            AI Based Student Placement Prediction
+        </div>
+
+    </div>
+
+</body>
+
+</html>

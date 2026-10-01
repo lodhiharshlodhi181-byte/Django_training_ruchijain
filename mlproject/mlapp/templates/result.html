@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Prediction Result</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Courier New", monospace;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 40px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(0,255,255,0.04) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(0,255,255,0.04) 1px,
+                    transparent 1px
+                ),
+                #03080d;
+
+            background-size: 40px 40px;
+
+            color: #00ffff;
+        }
+
+
+        /* MAIN PANEL */
+
+        .result-panel {
+
+            width: 700px;
+
+            padding: 45px;
+
+            background: rgba(3,18,27,0.96);
+
+            border: 2px solid #00ffff;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 0 15px #00ffff,
+                0 0 40px rgba(0,255,255,0.4),
+                inset 0 0 35px rgba(0,255,255,0.08);
+
+            position: relative;
+        }
+
+
+        /* CORNER EFFECT */
+
+        .result-panel::before,
+        .result-panel::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 45px;
+            height: 45px;
+
+            border-color: #00ffff;
+            border-style: solid;
+        }
+
+
+        .result-panel::before {
+
+            top: -3px;
+            left: -3px;
+
+            border-width: 4px 0 0 4px;
+        }
+
+
+        .result-panel::after {
+
+            bottom: -3px;
+            right: -3px;
+
+            border-width: 0 4px 4px 0;
+        }
+
+
+        /* TITLE */
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            letter-spacing: 4px;
+
+            color: #00ffff;
+
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 15px #00ffff,
+                0 0 30px #00ffff;
+
+            animation: glow 2s infinite alternate;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* STATUS */
+
+        .status {
+
+            text-align: center;
+
+            color: #39ff14;
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .dot {
+
+            display: inline-block;
+
+            width: 9px;
+            height: 9px;
+
+            margin-right: 8px;
+
+            border-radius: 50%;
+
+            background: #39ff14;
+
+            box-shadow:
+                0 0 5px #39ff14,
+                0 0 15px #39ff14;
+
+            animation: blink 1s infinite;
+        }
+
+
+        /* INPUT VALUES */
+
+        .input-section {
+
+            border: 1px solid #00ffff;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            margin-bottom: 25px;
+
+            background: rgba(0,255,255,0.03);
+
+            box-shadow:
+                inset 0 0 15px rgba(0,255,255,0.05);
+        }
+
+
+        .section-title {
+
+            color: #00ffff;
+
+            font-size: 13px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .values {
+
+            color: #8beff5;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            word-break: break-word;
+        }
+
+
+        /* RESULT BOX */
+
+        .prediction-box {
+
+            border: 2px solid #39ff14;
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            background: rgba(57,255,20,0.04);
+
+            box-shadow:
+                0 0 15px rgba(57,255,20,0.3),
+                inset 0 0 20px rgba(57,255,20,0.05);
+
+            margin-bottom: 30px;
+        }
+
+
+        .prediction-title {
+
+            color: #8fffa0;
+
+            font-size: 13px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .answer {
+
+            color: #39ff14;
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            letter-spacing: 5px;
+
+            text-shadow:
+                0 0 5px #39ff14,
+                0 0 15px #39ff14,
+                0 0 30px #39ff14;
+
+            animation: resultGlow 1.5s infinite alternate;
+        }
+
+
+        /* GLASS TYPES */
+
+        .glass-info {
+
+            border: 1px solid #00ffff;
+
+            border-radius: 10px;
+
+            padding: 22px;
+
+            background: rgba(0,255,255,0.02);
+
+        }
+
+
+        .glass-info h2 {
+
+            text-align: center;
+
+            color: #00ffff;
+
+            font-size: 18px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .glass-info p {
+
+            color: #7fdde2;
+
+            font-size: 13px;
+
+            line-height: 2;
+
+        }
+
+
+        .glass-info span {
+
+            color: #39ff14;
+
+            font-weight: bold;
+        }
+
+
+        /* FOOTER */
+
+        .system {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #42666b;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* ANIMATIONS */
+
+        @keyframes glow {
+
+            from {
+
+                text-shadow:
+                    0 0 5px #00ffff,
+                    0 0 15px #00ffff;
+            }
+
+            to {
+
+                text-shadow:
+                    0 0 10px #00ffff,
+                    0 0 25px #00ffff,
+                    0 0 45px #00ffff;
+            }
+        }
+
+
+        @keyframes resultGlow {
+
+            from {
+
+                text-shadow:
+                    0 0 5px #39ff14,
+                    0 0 15px #39ff14;
+            }
+
+            to {
+
+                text-shadow:
+                    0 0 10px #39ff14,
+                    0 0 25px #39ff14,
+                    0 0 40px #39ff14;
+            }
+        }
+
+
+        @keyframes blink {
+
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .result-panel {
+
+                width: 95%;
+
+                padding: 30px 20px;
+            }
+
+
+            h1 {
+
+                font-size: 23px;
+            }
+
+
+            .answer {
+
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="result-panel">
+
+
+        <!-- TITLE -->
+
+        <h1>
+            AI PREDICTION RESULT
+        </h1>
+
+
+        <!-- STATUS -->
+
+        <div class="status">
+
+            <span class="dot"></span>
+
+            ANALYSIS COMPLETE // AI ENGINE ONLINE
+
+        </div>
+
+
+        <!-- USER INPUT -->
+
+        <div class="input-section">
+
+            <div class="section-title">
+                &gt; ENTERED VALUES
+            </div>
+
+            <div class="values">
+                {{lis}}
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div class="prediction-box">
+
+            <div class="prediction-title">
+                PREDICTED GLASS TYPE
+            </div>
+
+            <div class="answer">
+                {{ans}}
+            </div>
+
+        </div>
+
+
+        <!-- GLASS INFORMATION -->
+
+        <div class="glass-info">
+
+            <h2>
+                GLASS CLASSIFICATION
+            </h2>
+
+            <p>
+                <span>01</span>
+                → Building Windows Float Processed
+            </p>
+
+            <p>
+                <span>02</span>
+                → Building Windows Non-Float Processed
+            </p>
+
+            <p>
+                <span>03</span>
+                → Vehicle Windows Float Processed
+            </p>
+
+            <p>
+                <span>04</span>
+                → Vehicle Windows Non-Float Processed
+                <small>(None in this database)</small>
+            </p>
+
+            <p>
+                <span>05</span>
+                → Containers
+            </p>
+
+            <p>
+                <span>06</span>
+                → Tableware
+            </p>
+
+            <p>
+                <span>07</span>
+                → Headlamps
+            </p>
+
+        </div>
+
+
+        <div class="system">
+
+            &lt; MACHINE LEARNING ENGINE // PREDICTION COMPLETE &gt;
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

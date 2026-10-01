@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Tech Hub{% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+    <!-- Website Name -->
+    <header>
+        <h1>TECH HUB</h1>
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'info' %}">Info</a>
+    </nav>
+
+    <!-- Page Content -->
+    {% block content %}
+
+    <section class="welcome">
+        <h2>Welcome to Tech Hub</h2>
+        <p>Explore our collection of mobile phones.</p>
+    </section>
+
+    <h2>Mobile Phones</h2>
+
+    <div class="container">
+
+        <div class="card">
+            <img src="{% static 'istockphoto-696127712-1024x1024.jpg' %}"
+                 alt="Mobile Phone">
+            <h3>Smartphone</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'paolo-giubilato-ZwKCWVFdrcs-unsplash.jpg' %}"
+                 alt="Mobile Phone">
+            <h3>Modern Mobile</h3>
+        </div>
+
+        <div class="card">
+            <img src="{% static 'thom-bradley-1NZcjdo2hKQ-unsplash.jpg' %}"
+                 alt="Mobile Phone">
+            <h3>Latest Phone</h3>
+        </div>
+
+    </div>
+
+    {% endblock %}
+
+</body>
+
+</html>
+

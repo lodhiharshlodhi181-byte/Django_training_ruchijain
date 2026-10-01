@@ -1,0 +1,392 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>REGISTRATION SUCCESS</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            font-family: "Courier New", monospace;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    rgba(0,255,255,0.05) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(0,255,255,0.05) 1px,
+                    transparent 1px
+                ),
+                #03080d;
+
+            background-size: 40px 40px;
+
+            color: #00ffff;
+        }
+
+
+        /* MAIN PANEL */
+
+        .success-box {
+
+            width: 520px;
+
+            padding: 50px 40px;
+
+            text-align: center;
+
+            background: rgba(3,18,27,0.95);
+
+            border: 2px solid #39ff14;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 0 15px #39ff14,
+                0 0 40px rgba(57,255,20,0.4),
+                inset 0 0 30px rgba(57,255,20,0.08);
+
+            position: relative;
+        }
+
+
+        /* CORNER EFFECT */
+
+        .success-box::before,
+        .success-box::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 40px;
+            height: 40px;
+
+            border-color: #00ffff;
+
+            border-style: solid;
+        }
+
+
+        .success-box::before {
+
+            top: -3px;
+            left: -3px;
+
+            border-width: 4px 0 0 4px;
+        }
+
+
+        .success-box::after {
+
+            bottom: -3px;
+            right: -3px;
+
+            border-width: 0 4px 4px 0;
+        }
+
+
+        /* SUCCESS ICON */
+
+        .check {
+
+            width: 75px;
+            height: 75px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 3px solid #39ff14;
+
+            border-radius: 50%;
+
+            color: #39ff14;
+
+            font-size: 40px;
+            font-weight: bold;
+
+            box-shadow:
+                0 0 10px #39ff14,
+                0 0 30px #39ff14;
+
+            animation: pulse 1.5s infinite;
+        }
+
+
+        /* HEADING */
+
+        h1 {
+
+            font-size: 30px;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 15px;
+
+            color: #39ff14;
+
+            text-shadow:
+                0 0 5px #39ff14,
+                0 0 15px #39ff14,
+                0 0 30px #39ff14;
+        }
+
+
+        .message {
+
+            color: #8fffa0;
+
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* STATUS */
+
+        .status {
+
+            color: #00ffff;
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .dot {
+
+            display: inline-block;
+
+            width: 9px;
+            height: 9px;
+
+            margin-right: 8px;
+
+            border-radius: 50%;
+
+            background: #39ff14;
+
+            box-shadow:
+                0 0 5px #39ff14,
+                0 0 15px #39ff14;
+
+            animation: blink 1s infinite;
+        }
+
+
+        /* HOME BUTTON */
+
+        .home-btn {
+
+            display: inline-block;
+
+            padding: 15px 35px;
+
+            border: 2px solid #00ffff;
+
+            border-radius: 6px;
+
+            color: #00ffff;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            transition: 0.3s;
+        }
+
+
+        .home-btn:hover {
+
+            background: #00ffff;
+
+            color: #001014;
+
+            box-shadow:
+                0 0 10px #00ffff,
+                0 0 25px #00ffff,
+                0 0 50px rgba(0,255,255,0.5);
+
+            transform: scale(1.05);
+        }
+
+
+        /* SYSTEM TEXT */
+
+        .system {
+
+            margin-top: 30px;
+
+            color: #42666b;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* ANIMATIONS */
+
+        @keyframes pulse {
+
+            0% {
+                transform: scale(1);
+
+                box-shadow:
+                    0 0 10px #39ff14,
+                    0 0 20px #39ff14;
+            }
+
+            50% {
+                transform: scale(1.08);
+
+                box-shadow:
+                    0 0 20px #39ff14,
+                    0 0 40px #39ff14;
+            }
+
+            100% {
+                transform: scale(1);
+
+                box-shadow:
+                    0 0 10px #39ff14,
+                    0 0 20px #39ff14;
+            }
+        }
+
+
+        @keyframes blink {
+
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .success-box {
+
+                width: 90%;
+
+                padding: 40px 20px;
+            }
+
+            h1 {
+
+                font-size: 23px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="success-box">
+
+
+        <!-- SUCCESS ICON -->
+
+        <div class="check">
+            ✓
+        </div>
+
+
+        <!-- HEADING -->
+
+        <h1>
+            REGISTRATION DONE
+        </h1>
+
+
+        <div class="message">
+
+            STUDENT REGISTRATION<br>
+            HAS BEEN SUCCESSFULLY COMPLETED
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="status">
+
+            <span class="dot"></span>
+
+            DATABASE UPDATED // SYSTEM ONLINE
+
+        </div>
+
+
+        <!-- HOME -->
+
+        <a href="{% url 'home' %}"
+           class="home-btn">
+
+            [ GO TO HOME ]
+
+        </a>
+
+
+        <div class="system">
+
+            &lt; REGISTRATION SERVER // TRANSACTION COMPLETE &gt;
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
+```

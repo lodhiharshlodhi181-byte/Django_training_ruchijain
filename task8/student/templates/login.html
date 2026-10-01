@@ -1,0 +1,492 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ROBOT LOGIN</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Courier New", monospace;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px),
+                #03080d;
+
+            background-size: 40px 40px;
+
+            color: #00ffff;
+
+            overflow: hidden;
+        }
+
+        /* LOGIN PANEL */
+
+        .login-box {
+            width: 430px;
+
+            padding: 40px;
+
+            background: rgba(3, 18, 27, 0.94);
+
+            border: 2px solid #00ffff;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 0 15px #00ffff,
+                0 0 40px rgba(0,255,255,0.4),
+                inset 0 0 30px rgba(0,255,255,0.08);
+
+            position: relative;
+        }
+
+
+        /* CORNER EFFECT */
+
+        .login-box::before,
+        .login-box::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 35px;
+            height: 35px;
+
+            border-color: #00ffff;
+            border-style: solid;
+        }
+
+        .login-box::before {
+
+            top: -3px;
+            left: -3px;
+
+            border-width: 4px 0 0 4px;
+        }
+
+        .login-box::after {
+
+            bottom: -3px;
+            right: -3px;
+
+            border-width: 0 4px 4px 0;
+        }
+
+
+        /* HEADING */
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 32px;
+
+            letter-spacing: 5px;
+
+            margin-bottom: 10px;
+
+            color: #00ffff;
+
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 15px #00ffff,
+                0 0 30px #00ffff;
+
+            animation: glow 2s infinite alternate;
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #6beef5;
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* STATUS */
+
+        .status {
+
+            text-align: center;
+
+            color: #39ff14;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .dot {
+
+            display: inline-block;
+
+            width: 9px;
+            height: 9px;
+
+            margin-right: 8px;
+
+            border-radius: 50%;
+
+            background: #39ff14;
+
+            box-shadow:
+                0 0 5px #39ff14,
+                0 0 15px #39ff14;
+
+            animation: blink 1s infinite;
+        }
+
+
+        /* LABEL */
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #00ffff;
+
+            font-size: 14px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* INPUT */
+
+        input[type="text"],
+        input[type="password"] {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-bottom: 22px;
+
+            background: #02090e;
+
+            color: #00ffff;
+
+            border: 1px solid #00ffff;
+
+            border-radius: 5px;
+
+            outline: none;
+
+            font-size: 16px;
+
+            box-shadow:
+                inset 0 0 10px rgba(0,255,255,0.1);
+
+            transition: 0.3s;
+        }
+
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+
+            border-color: #39ff14;
+
+            box-shadow:
+                0 0 10px #39ff14,
+                inset 0 0 10px rgba(57,255,20,0.1);
+        }
+
+
+        /* LOGIN BUTTON */
+
+        input[type="submit"] {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 5px;
+
+            background: transparent;
+
+            color: #00ffff;
+
+            border: 2px solid #00ffff;
+
+            border-radius: 6px;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            letter-spacing: 4px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        input[type="submit"]:hover {
+
+            background: #00ffff;
+
+            color: #001014;
+
+            box-shadow:
+                0 0 10px #00ffff,
+                0 0 25px #00ffff,
+                0 0 50px rgba(0,255,255,0.5);
+
+            transform: scale(1.03);
+        }
+
+
+        input[type="submit"]:active {
+
+            transform: scale(0.97);
+        }
+
+
+        /* ERROR MESSAGE */
+
+        .error {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #ff3131;
+
+            font-size: 13px;
+
+            text-shadow: 0 0 8px #ff3131;
+        }
+
+
+        /* SIGNUP LINK */
+
+        .signup {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(0,255,255,0.3);
+
+            font-size: 13px;
+
+            color: #668b91;
+        }
+
+
+        .signup a {
+
+            color: #00ffff;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+
+        .signup a:hover {
+
+            color: #39ff14;
+
+            text-shadow: 0 0 10px #39ff14;
+        }
+
+
+        /* SYSTEM TEXT */
+
+        .system {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #42666b;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* ANIMATIONS */
+
+        @keyframes glow {
+
+            from {
+
+                text-shadow:
+                    0 0 5px #00ffff,
+                    0 0 15px #00ffff;
+            }
+
+            to {
+
+                text-shadow:
+                    0 0 10px #00ffff,
+                    0 0 25px #00ffff,
+                    0 0 45px #00ffff;
+            }
+        }
+
+
+        @keyframes blink {
+
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .login-box {
+
+                width: 90%;
+
+                padding: 30px 20px;
+            }
+
+            h1 {
+
+                font-size: 26px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="login-box">
+
+        <h1>LOGIN</h1>
+
+        <div class="subtitle">
+            ROBOTIC ACCESS TERMINAL
+        </div>
+
+        <div class="status">
+            <span class="dot"></span>
+            SYSTEM READY
+        </div>
+
+
+        <form action="{% url 'studentreg' %}" method="post">
+
+            {% csrf_token %}
+
+
+            <!-- USERNAME -->
+
+            <label for="username">
+                &gt; USERNAME
+            </label>
+
+            <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Enter username"
+            >
+
+
+            <!-- PASSWORD -->
+
+            <label for="password">
+                &gt; PASSWORD
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter password"
+            >
+
+
+            <!-- LOGIN -->
+
+            <input
+                type="submit"
+                value="[ LOGIN ]"
+            >
+
+
+            <!-- ERROR -->
+
+            <span class="error">
+                {{ erg }}
+            </span>
+
+        </form>
+
+
+        <!-- SIGNUP -->
+
+        <div class="signup">
+
+            NEW USER?
+
+            <a href="{% url 'signup' %}">
+                CREATE ACCOUNT
+            </a>
+
+        </div>
+
+
+        <div class="system">
+            &lt; SECURE SYSTEM // AUTHENTICATION ACTIVE &gt;
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+```

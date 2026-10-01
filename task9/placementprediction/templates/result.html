@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Placement Result</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(0, 234, 255, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(168, 85, 247, 0.20),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #080b18,
+                    #111936,
+                    #080b18
+                );
+        }
+
+        /* Main Result Card */
+
+        .result-container {
+
+            width: 550px;
+
+            padding: 50px 40px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            border-radius: 30px;
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.55),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+            animation: showCard 0.7s ease;
+        }
+
+        /* Heading */
+
+        h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 25px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00eaff,
+                    #ffffff,
+                    #a855f7
+                );
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        /* User entered value */
+
+        .value-box {
+
+            padding: 18px;
+
+            margin-bottom: 30px;
+
+            border-radius: 15px;
+
+            background: rgba(0, 0, 0, 0.25);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            color: rgba(255, 255, 255, 0.75);
+
+            font-size: 17px;
+        }
+
+        .value-box span {
+
+            color: #00eaff;
+
+            font-weight: 700;
+        }
+
+        /* Result Box */
+
+        .result-box {
+
+            padding: 30px 20px;
+
+            border-radius: 20px;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+        }
+
+        /* Congratulations */
+
+        .success {
+
+            border-color: rgba(0, 255, 170, 0.35);
+
+            box-shadow:
+                0 0 30px rgba(0, 255, 170, 0.10);
+        }
+
+        .success h2:first-child {
+
+            color: #00ffb3;
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .success h2:last-child {
+
+            color: rgba(255, 255, 255, 0.85);
+
+            font-size: 20px;
+
+            font-weight: 500;
+        }
+
+        /* Sorry */
+
+        .failure {
+
+            border-color: rgba(255, 90, 110, 0.35);
+
+            box-shadow:
+                0 0 30px rgba(255, 70, 90, 0.10);
+        }
+
+        .failure h2:first-child {
+
+            color: #ff6b81;
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .failure h2:last-child {
+
+            color: rgba(255, 255, 255, 0.85);
+
+            font-size: 20px;
+
+            font-weight: 500;
+        }
+
+        /* Back Button */
+
+        .back-btn {
+
+            display: inline-block;
+
+            margin-top: 30px;
+
+            padding: 14px 30px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00eaff,
+                    #0077ff,
+                    #8b5cf6
+                );
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            transition: 0.3s ease;
+
+            box-shadow:
+                0 8px 25px rgba(0, 119, 255, 0.25);
+        }
+
+        .back-btn:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 0 25px rgba(0, 234, 255, 0.45);
+        }
+
+        .back-btn:active {
+
+            transform: scale(0.96);
+        }
+
+        /* Animation */
+
+        @keyframes showCard {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(0.95);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            .result-container {
+
+                width: 100%;
+
+                padding: 40px 25px;
+
+                border-radius: 24px;
+            }
+
+            h1 {
+
+                font-size: 32px;
+            }
+
+            .success h2:first-child,
+            .failure h2:first-child {
+
+                font-size: 25px;
+            }
+
+            .success h2:last-child,
+            .failure h2:last-child {
+
+                font-size: 17px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="result-container">
+
+        <h1>Placement Result</h1>
+
+
+        <div class="value-box">
+
+            The entered value by user:
+
+            <br><br>
+
+            <span>{{ lis }}</span>
+
+        </div>
+
+
+        {% if ans == 1 %}
+
+            <div class="result-box success">
+
+                <h2>Congratulations! 🎉</h2>
+
+                <h2>
+                    Student ko placement milegi.
+                </h2>
+
+            </div>
+
+        {% else %}
+
+            <div class="result-box failure">
+
+                <h2>Sorry! 😔</h2>
+
+                <h2>
+                    Student is not Eligible for placement.
+                </h2>
+
+            </div>
+
+        {% endif %}
+
+
+        <a href="{% url 'login' %}" class="back-btn">
+            Back to Login
+        </a>
+
+    </div>
+
+</body>
+
+</html>

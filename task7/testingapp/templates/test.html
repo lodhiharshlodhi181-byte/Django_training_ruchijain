@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Test</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .question {
+            background-color: white;
+            max-width: 700px;
+            margin: 25px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        .option {
+            margin: 15px 0;
+            font-size: 17px;
+        }
+
+        .submit-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Online Test</h1>
+
+<form method="POST" action="{% url 'result' %}">
+
+    {% csrf_token %}
+
+    {% for q in questions %}
+
+    <div class="question">
+
+        <h3>
+            {{ forloop.counter }}. {{ q.question }}
+        </h3>
+
+        <div class="option">
+            <input type="radio"
+                   name="question_{{ q.id }}"
+                   value="{{ q.option1 }}"
+                   required>
+            {{ q.option1 }}
+        </div>
+
+        <div class="option">
+            <input type="radio"
+                   name="question_{{ q.id }}"
+                   value="{{ q.option2 }}">
+            {{ q.option2 }}
+        </div>
+
+        <div class="option">
+            <input type="radio"
+                   name="question_{{ q.id }}"
+                   value="{{ q.option3 }}">
+            {{ q.option3 }}
+        </div>
+
+        <div class="option">
+            <input type="radio"
+                   name="question_{{ q.id }}"
+                   value="{{ q.option4 }}">
+            {{ q.option4 }}
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    <button class="submit-btn" type="submit">
+        Submit Test
+    </button>
+
+</form>
+
+</body>
+</html>
